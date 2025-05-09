@@ -1,4 +1,4 @@
-package com.example.motors.ui.theme
+package com.example.motors.ui.theme.screens.home
 
 import android.content.Intent
 import android.net.Uri
@@ -15,7 +15,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Search
@@ -42,13 +41,18 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.motors.R
+import com.example.motors.data.AuthviewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(){
+fun HomeScreen(navController: NavHostController) {
     val selectedItem = remember { mutableStateOf(0) }
+    val authviewModel: AuthviewModel = viewModel()
     val context = LocalContext.current
     Scaffold(
         bottomBar = { NavigationBar(containerColor = Color.Blue){
@@ -58,7 +62,7 @@ fun HomeScreen(){
                     val intent =Intent(Intent.ACTION_SENDTO).apply {
                         data = Uri.parse("mailto: info@emobilis.com")
                         putExtra(Intent.EXTRA_SUBJECT,"Inquiry")
-                        putExtra(Intent.EXTRA_TEXT,"Hello,confirm to me my total fee balance")
+                        putExtra(Intent.EXTRA_TEXT,"Hello,confirm for me how much is land cruiser prado 2020 model")
                     }
                     context.startActivity(intent)},
                 icon = { Icon(Icons.Filled.Email, contentDescription = "Email")},
@@ -69,7 +73,7 @@ fun HomeScreen(){
                 selected = selectedItem.value == 1,
                 onClick = { selectedItem.value = 1
                     val intent = Intent(Intent.ACTION_DIAL).apply {
-                        data = Uri.parse("tel:0116145839")}
+                       data= Uri.parse("tel:0116145839")}
                     context.startActivity(intent)},
                 icon = { Icon(Icons.Filled. Phone, contentDescription = "Phone")},
                 label = { Text("Phone")},
@@ -82,7 +86,7 @@ fun HomeScreen(){
                     val sendIntent = Intent().apply {
                         action = Intent.ACTION_SEND
                         putExtra(Intent.EXTRA_TEXT,"Download app here:https://www.download.com")
-                        type = "text/plain"
+                         type= "text/plain"
                     }
                     val shareIntent = Intent.createChooser(sendIntent, null)
                     context.startActivity(shareIntent)
@@ -91,6 +95,7 @@ fun HomeScreen(){
                 label = { Text("Share")},
                 alwaysShowLabel = true
             )
+
         } }
     )
     { innerPadding ->
@@ -125,6 +130,7 @@ fun HomeScreen(){
                             contentDescription = "Search"
                         )
                     }
+
                     IconButton(onClick = {}) {
                         Icon(
                             imageVector = Icons.Filled.Menu,
@@ -132,7 +138,8 @@ fun HomeScreen(){
                         )
                     }
 
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = {{authviewModel.logout(navController,context)}}) {
+
                         Icon(
                             imageVector = Icons.Filled.AccountBox,
                             contentDescription = "Logout"
@@ -162,7 +169,7 @@ fun HomeScreen(){
                             .padding(25.dp), contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "Students",
+                            text = "Clients",
                             color = Color.Black
                         )
                     }
@@ -178,7 +185,7 @@ fun HomeScreen(){
                             .padding(25.dp), contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "Teachers",
+                            text = "Workers",
                             color = Color.Black
                         )
                     }
@@ -263,4 +270,5 @@ fun HomeScreen(){
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()}
+    HomeScreen(rememberNavController())
+}

@@ -1,7 +1,5 @@
-package com.example.motors.ui.theme
+package com.example.motors.ui.theme.screens.login
 
-import android.inputmethodservice.Keyboard.Row
-import android.media.tv.TvContract
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -44,13 +42,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImagePainter.State.Empty.painter
-import coil.size.OriginalSize
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.motors.R
+import com.example.motors.data.AuthviewModel
+import com.example.motors.navigation.ROUTE_LOGIN
 
 @Composable
-fun LoginScreen() {
-
+fun LoginScreen(navController: NavHostController) {
+    var authViewModel: AuthviewModel = viewModel()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -119,12 +120,16 @@ fun LoginScreen() {
             color = Color.Blue,
             textAlign = TextAlign.Center,
             modifier = Modifier.background(Color.White).padding(20.dp).fillMaxWidth()
+                .clickable {
+                    authViewModel.reset(email, context, navController)
+                    navController.navigate(ROUTE_LOGIN)
+                }
 
 
         )
 
         Button(
-            onClick = {},
+            onClick ={authViewModel.login(email,password,navController,context)},
             modifier = Modifier.wrapContentWidth().align(Alignment.CenterHorizontally),
             colors = ButtonDefaults.buttonColors(Color.Blue)
         )
@@ -136,6 +141,9 @@ fun LoginScreen() {
                     .clickable {
                     })
         }
+        Spacer(modifier = Modifier.height(8.dp))
+
+
         Text(
             text = "------------------Or-----------------",
             fontSize = 15.sp,
@@ -213,6 +221,6 @@ fun LoginScreen() {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun LoginScreenPreview(){
-    LoginScreen()
+    LoginScreen(rememberNavController())
 }
 

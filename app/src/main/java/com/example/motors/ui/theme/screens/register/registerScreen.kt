@@ -1,4 +1,4 @@
-package com.example.motors.ui.theme
+package com.example.motors.ui.theme.screens.register
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -42,17 +42,24 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import  com.example.motors.R
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
+import  com.example.motors.R
+import com.example.motors.data.AuthviewModel
+import com.example.motors.navigation.ROUTE_LOGIN
 
 
 @Composable
-fun RegisterScreen(){
+fun RegisterScreen(navController: NavHostController) {
+    var authviewModel: AuthviewModel = viewModel()
     var firstname by remember { mutableStateOf( "") }
     var lastname by remember { mutableStateOf( "") }
     var email by remember { mutableStateOf( "") }
     var password by remember { mutableStateOf( "") }
     var phonenumber by remember { mutableStateOf( "") }
+
     val context = LocalContext.current
     val passwordVisible by remember { mutableStateOf(false) }
     Column(
@@ -133,6 +140,7 @@ fun RegisterScreen(){
 
 
         Button(onClick = {
+            authviewModel.signup(firstname,lastname,phonenumber,email,password,navController, context)
         }, modifier = Modifier.wrapContentWidth().align(Alignment.CenterHorizontally),
             colors = ButtonDefaults.buttonColors(Color.Blue),
             shape = RoundedCornerShape(0.9.dp),
@@ -141,7 +149,7 @@ fun RegisterScreen(){
             text = buildAnnotatedString { append("Register") },
             modifier = Modifier.wrapContentHeight().align(Alignment.CenterVertically)
                 .clickable {
-
+                    navController.navigate(ROUTE_LOGIN)
 
                 })
         }
@@ -158,5 +166,5 @@ fun RegisterScreen(){
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun RegisterScreenPreview() {
-    RegisterScreen()
+    RegisterScreen(rememberNavController())
 }
