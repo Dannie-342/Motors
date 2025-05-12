@@ -1,6 +1,5 @@
 package com.example.motors.data
 
-import android.R.attr.value
 import android.app.AlertDialog
 import android.content.Context
 import android.net.Uri
@@ -28,7 +27,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
-
 
 
 class ClientViewModel: ViewModel() {
@@ -164,25 +162,38 @@ class ClientViewModel: ViewModel() {
                     value?.let {
                         clients.add(it)
                     }
-                }
-                if (clients.isNotEmpty()) {
-                    context.value = clients.first()
+                    if (clients.isNotEmpty()) {
+                        client.value = clients.first()
+                    } else {
+                        Toast.makeText(context, "No clients found", Toast.LENGTH_SHORT).show()
+                    }
+
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, "Failed to fetch clients: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    "Failed to fetch clients: ${error.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
 
             }
 
 
         })
-
         return clients
+    }
 
-        fun updateClient(
-            context: Context, navController: NavController,
-            name: String, gender: String, nationality: String,
-            county: String, desc: String, clientId: String
+    fun updateclient(
+            context: Context,
+            navController: NavController,
+            name: String,
+            gender: String,
+            nationality: String,
+            county: String,
+            desc: String,
+            clientId: String
         ) {
             val databaseReference = FirebaseDatabase.getInstance()
                 .getReference("Clients/$clientId")
@@ -206,12 +217,9 @@ class ClientViewModel: ViewModel() {
                     }
                 }
         }
+        fun deleteClient(context: Context, clientId: String)
 
-
-        fun deleteClient(
-            context: Context, clientId: String,
-            navController: NavController
-        ) {
+         {
             AlertDialog.Builder(context)
                 .setTitle("Delete Client")
                 .setMessage("Are you sure you want to delete this client?")
@@ -237,6 +245,6 @@ class ClientViewModel: ViewModel() {
                 .show()
         }
     }
-}
+
 
 

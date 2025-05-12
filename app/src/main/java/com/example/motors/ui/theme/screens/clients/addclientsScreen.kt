@@ -114,6 +114,7 @@ fun AddclientScreen(navController: NavController) {
         Row(modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween) {
             Button(onClick = {
+
             }, colors = ButtonDefaults.buttonColors(Color.Black)) {
                 Text(text = "DASHBOARD")
             }
@@ -123,6 +124,11 @@ fun AddclientScreen(navController: NavController) {
                 }?: Toast.makeText(context,"Please pick an image", Toast.LENGTH_SHORT).show()
             }, colors = ButtonDefaults.buttonColors(Color.Green)) {
                 Text(text = "SAVE")
+            }
+            Button(onClick = {
+                navController.navigate("home")
+            }, colors = ButtonDefaults.buttonColors(Color.Blue)) {
+                Text(text = "CANCEL")
             }
         }
 

@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.motors.SplashScreen
+import com.example.motors.ui.theme.screens.SplashScreen
 import com.example.motors.ui.theme.screens.clients.AddclientScreen
 import com.example.motors.ui.theme.screens.clients.UpdateclientScreen
 import com.example.motors.ui.theme.screens.clients.ViewClients

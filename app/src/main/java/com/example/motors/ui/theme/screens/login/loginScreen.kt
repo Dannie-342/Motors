@@ -47,6 +47,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.motors.R
 import com.example.motors.data.AuthviewModel
+import com.example.motors.navigation.ROUTE_HOME
 import com.example.motors.navigation.ROUTE_LOGIN
 
 @Composable
@@ -86,7 +87,7 @@ fun LoginScreen(navController: NavHostController) {
             modifier = Modifier
                 .wrapContentHeight()
                 .fillMaxWidth()
-                .height(200.dp).align(Alignment.CenterHorizontally)
+                .height(150.dp).align(Alignment.CenterHorizontally)
 
         )
 
@@ -139,6 +140,7 @@ fun LoginScreen(navController: NavHostController) {
                 color = Color.Black,
                 modifier = Modifier.wrapContentHeight().align(Alignment.CenterVertically)
                     .clickable {
+                        navController.navigate(ROUTE_HOME)
                     })
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -153,7 +155,8 @@ fun LoginScreen(navController: NavHostController) {
         )
 
         Button(
-            onClick = {},
+            onClick = {
+            },
             modifier = Modifier.wrapContentWidth().align(Alignment.CenterHorizontally),
             colors = ButtonDefaults.buttonColors(Color.LightGray)
 
@@ -169,12 +172,30 @@ fun LoginScreen(navController: NavHostController) {
                     modifier = Modifier.size(24.dp)
                         .wrapContentHeight()
                         .fillMaxWidth()
-                        .height(25.dp)
+                        .height(25.dp).align(Alignment.CenterVertically).clickable(
+                            onClick = {
+                                authViewModel.loginWithGoogle(navController, context)
+                                navController.navigate(ROUTE_HOME)
+                            }
+
+                        )
+
+
+
+
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = buildAnnotatedString { append("Sign in with Google") },
                     color = Color.Black,
+                    modifier = Modifier.wrapContentHeight().align(Alignment.CenterVertically)
+                        .clickable {
+                            authViewModel.loginWithGoogle(navController, context)
+                            navController.navigate(ROUTE_HOME)
+
+
+
+                        }
                 )
             }
 
@@ -183,7 +204,8 @@ fun LoginScreen(navController: NavHostController) {
         }
 
         Button(
-            onClick = {},
+            onClick = {
+            },
             modifier = Modifier.wrapContentWidth().align(Alignment.CenterHorizontally),
             colors = ButtonDefaults.buttonColors(Color.LightGray)
         ) {
@@ -198,13 +220,31 @@ fun LoginScreen(navController: NavHostController) {
                     modifier = Modifier.size(24.dp)
                         .wrapContentHeight()
                         .fillMaxWidth()
-                        .height(25.dp)
+                        .height(25.dp).
+                        align(Alignment.CenterVertically).clickable(
+                            onClick = {
+                                authViewModel.loginWithFacebook(navController, context)
+                                navController.navigate(ROUTE_HOME)
+                            }
+                        )
+
+
+
                 )
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
                     text = buildAnnotatedString { append("Sign in with Facebook") },
                     color = Color.Black,
+                    modifier = Modifier.wrapContentHeight().align(Alignment.CenterVertically)
+                        .clickable {
+                            navController.navigate(ROUTE_LOGIN)
+                            authViewModel.loginWithFacebook(navController, context)
+                            navController.navigate(ROUTE_HOME)
+
+
+
+                        }
                 )
 
 

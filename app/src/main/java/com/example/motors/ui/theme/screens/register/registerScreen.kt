@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
@@ -49,6 +51,7 @@ import androidx.navigation.compose.rememberNavController
 import  com.example.motors.R
 import com.example.motors.data.AuthviewModel
 import com.example.motors.navigation.ROUTE_LOGIN
+import com.example.motors.navigation.ROUTE_REGISTER
 
 
 @Composable
@@ -59,13 +62,12 @@ fun RegisterScreen(navController: NavHostController) {
     var email by remember { mutableStateOf( "") }
     var password by remember { mutableStateOf( "") }
     var phonenumber by remember { mutableStateOf( "") }
-
     val context = LocalContext.current
     val passwordVisible by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .fillMaxHeight()
-            .fillMaxWidth(), verticalArrangement = Arrangement.Center
+            .fillMaxWidth().verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = "Register Here!!",
@@ -90,7 +92,7 @@ fun RegisterScreen(navController: NavHostController) {
             modifier = Modifier
                 .wrapContentHeight()
                 .fillMaxWidth()
-                .height(200.dp)
+                .height(150.dp)
         )
         OutlinedTextField(
             value = firstname,
@@ -149,10 +151,17 @@ fun RegisterScreen(navController: NavHostController) {
             text = buildAnnotatedString { append("Register") },
             modifier = Modifier.wrapContentHeight().align(Alignment.CenterVertically)
                 .clickable {
-                    navController.navigate(ROUTE_LOGIN)
+                    navController.navigate(ROUTE_REGISTER)
 
                 })
         }
+        Text(text = buildAnnotatedString { append("If you have an account,Login Here") },
+            modifier = Modifier.wrapContentHeight().align(Alignment.CenterHorizontally)
+                .clickable {
+                    navController.navigate(ROUTE_LOGIN)
+                })
+
+
 
 
     }

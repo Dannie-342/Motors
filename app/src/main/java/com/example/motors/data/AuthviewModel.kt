@@ -43,7 +43,7 @@ class AuthviewModel: ViewModel() {
                         phone = phone,
                         email = email,
                         password = password,
-                        userId = userId
+                        userId = userId,
                     )
                     saveUserToDatabase(userId, userData, navController, context)
 
@@ -113,7 +113,63 @@ class AuthviewModel: ViewModel() {
             }
 
     }
+    fun loginWithGoogle(navController: NavController, context: Context) {
+        if (
+            mAuth.currentUser?.displayName == null ||
+            mAuth.currentUser?.email == null ||
+            mAuth.currentUser?.photoUrl == null
+        ) {
+            Toast.makeText(context, "Please login with Google", Toast.LENGTH_LONG).show()
+            return
+        }
+        val userId = mAuth.currentUser?.uid ?: ""
+        val userData = UserModel(
+            firstname = mAuth.currentUser?.displayName ?: "",
+            lastname = "",
+            phone = "",
+            email = mAuth.currentUser?.email ?: "",
+            password = "",
+            userId = userId,
+        )
+        saveUserToDatabase(userId, userData, navController, context)
+        Toast.makeText(context, "Logged in successfully", Toast.LENGTH_LONG).show()
+        navController.navigate(ROUTE_HOME)
+    }
 
+    fun loginWithFacebook(navController: NavController, context: Context) {
+        if (
+            mAuth.currentUser?.displayName == null ||
+            mAuth.currentUser?.email == null ||
+            mAuth.currentUser?.photoUrl == null
+        ) {
+            Toast.makeText(context, "Please login with Facebook", Toast.LENGTH_LONG).show()
+            return
+        }
+        val userId = mAuth.currentUser?.uid ?: ""
+        val userData = UserModel(
+            firstname = mAuth.currentUser?.displayName ?: "",
+            lastname = "",
+            phone = "",
+            email = mAuth.currentUser?.email ?: "",
+            password = "",
+            userId = userId,
+        )
+        saveUserToDatabase(userId, userData, navController, context)
+        Toast.makeText(context, "Logged in successfully", Toast.LENGTH_LONG).show()
+        navController.navigate(ROUTE_HOME)
+
+
+    }
+    fun search(navController: NavController, context: Context) {
+        Toast.makeText(context, "Search clicked", Toast.LENGTH_LONG).show()
+        return
+    }
+
+
+    fun add(navController: NavController, context: Context) {
+        Toast.makeText(context, "Add clicked", Toast.LENGTH_LONG).show()
+        navController.navigate(ROUTE_HOME)
+    }
 
     fun logout(navController: NavController, context: Context) {
         mAuth.signOut()
@@ -127,6 +183,17 @@ class AuthviewModel: ViewModel() {
         }
 
     }
+     fun menu(navController: NavController, context: Context) {
+         Toast.makeText(context, "Menu clicked", Toast.LENGTH_LONG).show()
+         navController.navigate(ROUTE_HOME)
+     }
+
+
+
+
+
+
+
 
 }
 

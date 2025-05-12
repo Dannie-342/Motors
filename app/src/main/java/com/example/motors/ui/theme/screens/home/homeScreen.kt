@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
@@ -46,6 +47,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.motors.R
 import com.example.motors.data.AuthviewModel
+import com.example.motors.navigation.ROUTE_ADD_CLIENT
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -101,7 +103,8 @@ fun HomeScreen(navController: NavHostController) {
     { innerPadding ->
 
 
-        Box() {
+        Box(
+        ) {
             Image(
                 painter = painterResource(id = R.drawable.background),
                 contentDescription = "background image",
@@ -124,22 +127,34 @@ fun HomeScreen(navController: NavHostController) {
                     }
                 },
                 actions = {
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = {
+                        authviewModel.search(navController,context)
+                    }) {
                         Icon(
                             imageVector = Icons.Filled.Search,
                             contentDescription = "Search"
                         )
                     }
-
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = {
+                        authviewModel.add(navController,context)
+                    }) {
                         Icon(
-                            imageVector = Icons.Filled.Menu,
-                            contentDescription = "Menu"
+                            imageVector = Icons.Filled.Add,
+                            contentDescription = "Add"
+
                         )
                     }
 
-                    IconButton(onClick = {{authviewModel.logout(navController,context)}}) {
+                    IconButton(onClick = {
+                        authviewModel.menu(navController,context)
+                    }) {
+                        Icon(
+                            imageVector = Icons.Filled.Menu,
+                            contentDescription = "Menu",
 
+                        )
+                    }
+                    IconButton(onClick = {{authviewModel.logout(navController,context)}}) {
                         Icon(
                             imageVector = Icons.Filled.AccountBox,
                             contentDescription = "Logout"
@@ -159,10 +174,11 @@ fun HomeScreen(navController: NavHostController) {
             Row {
                 Card(
                     modifier = Modifier.padding(10.dp).clickable {
+                        navController.navigate(ROUTE_ADD_CLIENT)
                     },
                     shape = RoundedCornerShape(20.dp),
                     elevation = CardDefaults.cardElevation(10.dp),
-                    colors = CardDefaults.cardColors(Color.White)
+                    colors = CardDefaults.cardColors(Color.Black)
                 ) {
                     Box(
                         modifier = Modifier.height(100.dp)
@@ -170,7 +186,7 @@ fun HomeScreen(navController: NavHostController) {
                     ) {
                         Text(
                             text = "Clients",
-                            color = Color.Black
+                            color = Color.White
                         )
                     }
                 }
@@ -178,7 +194,7 @@ fun HomeScreen(navController: NavHostController) {
                     modifier = Modifier.padding(10.dp),
                     shape = RoundedCornerShape(20.dp),
                     elevation = CardDefaults.cardElevation(10.dp),
-                    colors = CardDefaults.cardColors(Color.White)
+                    colors = CardDefaults.cardColors(Color.Black)
                 ) {
                     Box(
                         modifier = Modifier.height(100.dp)
@@ -186,7 +202,7 @@ fun HomeScreen(navController: NavHostController) {
                     ) {
                         Text(
                             text = "Workers",
-                            color = Color.Black
+                            color = Color.White
                         )
                     }
                 }
@@ -228,15 +244,16 @@ fun HomeScreen(navController: NavHostController) {
                     modifier = Modifier.padding(10.dp),
                     shape = RoundedCornerShape(20.dp),
                     elevation = CardDefaults.cardElevation(10.dp),
-                    colors = CardDefaults.cardColors(Color.White)
+                    colors = CardDefaults.cardColors(Color.Black)
                 ) {
                     Box(
                         modifier = Modifier.height(100.dp)
                             .padding(25.dp), contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "Car Categories",
-                            color = Color.Black
+                            text = "Cars",
+                            color = Color.White,
+
                         )
                     }
                 }
@@ -244,7 +261,7 @@ fun HomeScreen(navController: NavHostController) {
                     modifier = Modifier.padding(10.dp),
                     shape = RoundedCornerShape(20.dp),
                     elevation = CardDefaults.cardElevation(10.dp),
-                    colors = CardDefaults.cardColors(Color.White)
+                    colors = CardDefaults.cardColors(Color.Black)
                 ) {
                     Box(
                         modifier = Modifier.height(100.dp)
@@ -252,7 +269,7 @@ fun HomeScreen(navController: NavHostController) {
                     ) {
                         Text(
                             text = "Notification",
-                            color = Color.Black
+                            color = Color.White
                         )
                     }
                 }

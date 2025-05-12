@@ -1,5 +1,6 @@
 package com.example.motors.ui.theme.screens.clients
 
+import android.content.Context
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -48,6 +49,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+
+
+
 
 @Composable
 fun UpdateclientScreen(navController: NavController, clientId: String){
@@ -135,12 +139,14 @@ fun UpdateclientScreen(navController: NavController, clientId: String){
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Button(onClick = { /*TODO: Handle Go Back*/ }) {
-                Text(text = "GO BACK")
+                Text(text = "GO BACK",
+                    )
+
             }
             Spacer(modifier = Modifier.width(20.dp))
             Button(onClick = {
-                val clientRepository = ClientViewModel()
-                clientRepository.updateClient(
+              val clientRepository = ClientViewModel()
+                  clientRepository.updateclient(
                     context = context,
                     navController = navController,
                     name = name,
@@ -155,5 +161,8 @@ fun UpdateclientScreen(navController: NavController, clientId: String){
         }
     }
 }
+
+
+
 
 

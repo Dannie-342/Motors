@@ -1,5 +1,7 @@
 package com.example.motors.ui.theme.screens.clients
 
+import android.content.Context
+import android.view.View
 import   androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -39,6 +41,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.motors.data.ClientViewModel
 import com.example.motors.model.ClientModel
+
 import com.example.motors.navigation.ROUTE_UPDATE_CLIENT
 
 
@@ -81,7 +84,6 @@ fun ViewClients(navController: NavHostController){
                         navController = navController,
                         clientRepository = clientRepository
 
-
                     )
                 }
 
@@ -117,12 +119,7 @@ fun ClientItem(name:String,gender:String,nationality:String,county:String,
 
                     Row(horizontalArrangement = Arrangement.SpaceBetween) {
                         Button(onClick = {
-                            clientRepository.deleteClient(
-                                clientId,
-                                navController,
-                                context
-                            )
-
+                            clientRepository.deleteClient(context,clientId)
                         },
                             shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(Color.Red)
@@ -194,6 +191,9 @@ fun ClientItem(name:String,gender:String,nationality:String,county:String,
         }
     }
 }
+
+
+
 @Preview
 @Composable
 fun ViewClientsPreview() {
