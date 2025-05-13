@@ -165,20 +165,6 @@ class AuthviewModel: ViewModel() {
         navController.navigate(ROUTE_HOME)
     }
 
-
-
-
-    fun search(navController: NavController, context: Context) {
-        Toast.makeText(context, "Search clicked", Toast.LENGTH_LONG).show()
-        return
-    }
-
-
-    fun add(navController: NavController, context: Context) {
-        Toast.makeText(context, "Add clicked", Toast.LENGTH_LONG).show()
-        navController.navigate(ROUTE_HOME)
-    }
-
     fun logout(navController: NavController, context: Context) {
         mAuth.signOut()
         Toast.makeText(context, "Logged out successfully", Toast.LENGTH_LONG).show()
@@ -191,10 +177,7 @@ class AuthviewModel: ViewModel() {
         }
 
     }
-     fun menu(navController: NavController, context: Context) {
-         Toast.makeText(context, "Menu clicked", Toast.LENGTH_LONG).show()
-         navController.navigate(ROUTE_HOME)
-     }
+
 
 
 

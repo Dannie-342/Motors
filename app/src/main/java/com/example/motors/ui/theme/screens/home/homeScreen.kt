@@ -128,7 +128,6 @@ fun HomeScreen(navController: NavHostController) {
                 },
                 actions = {
                     IconButton(onClick = {
-                        authviewModel.search(navController,context)
                     }) {
                         Icon(
                             imageVector = Icons.Filled.Search,
@@ -136,7 +135,6 @@ fun HomeScreen(navController: NavHostController) {
                         )
                     }
                     IconButton(onClick = {
-                        authviewModel.add(navController,context)
                     }) {
                         Icon(
                             imageVector = Icons.Filled.Add,
@@ -146,7 +144,6 @@ fun HomeScreen(navController: NavHostController) {
                     }
 
                     IconButton(onClick = {
-                        authviewModel.menu(navController,context)
                     }) {
                         Icon(
                             imageVector = Icons.Filled.Menu,
@@ -154,10 +151,13 @@ fun HomeScreen(navController: NavHostController) {
 
                         )
                     }
-                    IconButton(onClick = {{authviewModel.logout(navController,context)}}) {
+                    IconButton(onClick = {
+                        authviewModel.logout(navController,context)
+                    }) {
                         Icon(
                             imageVector = Icons.Filled.AccountBox,
                             contentDescription = "Logout"
+
                         )
                     }
 
@@ -190,89 +190,7 @@ fun HomeScreen(navController: NavHostController) {
                         )
                     }
                 }
-                Card(
-                    modifier = Modifier.padding(10.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    elevation = CardDefaults.cardElevation(10.dp),
-                    colors = CardDefaults.cardColors(Color.Black)
-                ) {
-                    Box(
-                        modifier = Modifier.height(100.dp)
-                            .padding(25.dp), contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "Workers",
-                            color = Color.White
-                        )
-                    }
-                }
-                Card(
-                    modifier = Modifier.padding(10.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    elevation = CardDefaults.cardElevation(10.dp),
-                    colors = CardDefaults.cardColors(Color.Black)
-                ) {
-                    Box(
-                        modifier = Modifier.height(100.dp)
-                            .padding(25.dp), contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "Finance",
-                            color = Color.White
-                        )
-                    }
-                }
-            }
-            Row {
-                Card(
-                    modifier = Modifier.padding(10.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    elevation = CardDefaults.cardElevation(10.dp),
-                    colors = CardDefaults.cardColors(Color.Black)
-                ) {
-                    Box(
-                        modifier = Modifier.height(100.dp)
-                            .padding(25.dp), contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "Prices",
-                            color = Color.White
-                        )
-                    }
-                }
-                Card(
-                    modifier = Modifier.padding(10.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    elevation = CardDefaults.cardElevation(10.dp),
-                    colors = CardDefaults.cardColors(Color.Black)
-                ) {
-                    Box(
-                        modifier = Modifier.height(100.dp)
-                            .padding(25.dp), contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "Cars",
-                            color = Color.White,
 
-                        )
-                    }
-                }
-                Card(
-                    modifier = Modifier.padding(10.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    elevation = CardDefaults.cardElevation(10.dp),
-                    colors = CardDefaults.cardColors(Color.Black)
-                ) {
-                    Box(
-                        modifier = Modifier.height(100.dp)
-                            .padding(25.dp), contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "Notification",
-                            color = Color.White
-                        )
-                    }
-                }
             }
 
 
