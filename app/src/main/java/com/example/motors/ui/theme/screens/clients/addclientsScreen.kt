@@ -44,6 +44,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.motors.R
 import com.example.motors.data.ClientViewModel
+import com.example.motors.navigation.ROUTE_ADD_CLIENT
 
 
 @Composable
@@ -114,21 +115,22 @@ fun AddclientScreen(navController: NavController) {
         Row(modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween) {
             Button(onClick = {
+                navController.navigate(ROUTE_ADD_CLIENT)
 
-            }, colors = ButtonDefaults.buttonColors(Color.Black)) {
-                Text(text = "DASHBOARD")
+            }, colors = ButtonDefaults.buttonColors(Color.White)) {
+                Text(text = "EDIT", color = Color.Black)
             }
             Button(onClick = {
                 imageUri.value?.let {
                     clientViewModel.uploadclientWithImage(it,context,name,gender,nationality,county,description,navController)
                 }?: Toast.makeText(context,"Please pick an image", Toast.LENGTH_SHORT).show()
-            }, colors = ButtonDefaults.buttonColors(Color.Green)) {
-                Text(text = "SAVE")
+            }, colors = ButtonDefaults.buttonColors(Color.Black)) {
+                Text(text = "SAVE", color = Color.White)
             }
             Button(onClick = {
                 navController.navigate("home")
-            }, colors = ButtonDefaults.buttonColors(Color.Blue)) {
-                Text(text = "CANCEL")
+            }, colors = ButtonDefaults.buttonColors(Color.Black)) {
+                Text(text = "CANCEL", color = Color.White)
             }
         }
 
