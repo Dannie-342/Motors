@@ -14,9 +14,6 @@ import androidx.navigation.NavController
 import com.example.motors.model.ClientModel
 import com.example.motors.navigation.ROUTE_VIEW_CLIENT
 import com.example.motors.network.ImgurService
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
