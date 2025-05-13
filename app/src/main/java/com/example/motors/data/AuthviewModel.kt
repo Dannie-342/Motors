@@ -12,8 +12,6 @@ import com.example.motors.model.UserModel
 import com.example.motors.navigation.ROUTE_HOME
 import com.example.motors.navigation.ROUTE_LOGIN
 import com.example.motors.navigation.ROUTE_REGISTER
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
