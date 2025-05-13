@@ -181,8 +181,10 @@ fun HomeScreen(navController: NavHostController) {
                     colors = CardDefaults.cardColors(Color.Black)
                 ) {
                     Box(
-                        modifier = Modifier.height(100.dp)
-                            .padding(25.dp), contentAlignment = Alignment.Center
+                        modifier = Modifier.height(200.dp)
+                            .padding(80.dp), contentAlignment = Alignment.Center
+
+
                     ) {
                         Text(
                             text = "Clients",
