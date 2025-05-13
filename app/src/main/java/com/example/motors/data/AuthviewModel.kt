@@ -1,13 +1,21 @@
 package com.example.motors.data
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
+import android.widget.Button
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.example.motors.model.UserModel
 import com.example.motors.navigation.ROUTE_HOME
 import com.example.motors.navigation.ROUTE_LOGIN
 import com.example.motors.navigation.ROUTE_REGISTER
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -157,9 +165,11 @@ class AuthviewModel: ViewModel() {
         saveUserToDatabase(userId, userData, navController, context)
         Toast.makeText(context, "Logged in successfully", Toast.LENGTH_LONG).show()
         navController.navigate(ROUTE_HOME)
-
-
     }
+
+
+
+
     fun search(navController: NavController, context: Context) {
         Toast.makeText(context, "Search clicked", Toast.LENGTH_LONG).show()
         return
